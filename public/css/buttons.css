@@ -1,0 +1,15 @@
+.btn-submit {
+    color: white;
+    background-color: #8EA7E9;
+    border: none;
+    padding: 0px 14px;
+    border-radius: 8px;
+}
+
+.btn-submit:disabled, .btn-submit:disabled:hover{
+    background-color: #E1AEFF;
+}
+
+.btn-submit:hover {
+    background-color: #7286D3;
+}
