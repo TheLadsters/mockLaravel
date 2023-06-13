@@ -23,11 +23,11 @@
                 <div class="container-fluid">
                     <div class="fixed-bottom mx-5 mb-3">
                         <form>
-                            <div class="messages--div">
+                            <div id="message-list" class="messages--div">
                             </div>
 
                             <div class="mb-3">
-                                <input type="text" class="form-control" placeholder="Type a new message">
+                                <input id="message-input" type="text" class="form-control" placeholder="Type a new message">
                             </div>
 
                             <div class="row">
@@ -40,7 +40,7 @@
                                         <i class='bx bx-paperclip bx-sm'></i>
                                     </a>
 
-                                    <button type="submit" class="btn btn-primary">
+                                    <button id="message-button" type="submit" class="btn btn-primary">
                                         <i class='bx bx-send'></i> Send
                                     </button>
                                 </div>
