@@ -23,4 +23,29 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     }
 
+    const messageInput = document.getElementById('message-input');
+    const messageButton = document.getElementById('message-button');
+    messageButton.disabled = true;
+
+    messageInput.addEventListener('input', function(e) {
+        if(messageInput.value === ''){
+            messageButton.disabled = true
+        }
+        else {
+            messageButton.disabled = false
+        }
+    });
+
+
+    messageButton.addEventListener('click', function(e) {
+        e.preventDefault();
+    
+        // Get the value from the message input field
+        var message = messageInput.value;
+    
+    
+        // Clear the message input field
+        messageInput.value = '';
+        messageButton.disabled = true;
+      });
 });
