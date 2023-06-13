@@ -25,6 +25,8 @@ window.addEventListener('DOMContentLoaded', event => {
 
     const messageInput = document.getElementById('message-input');
     const messageButton = document.getElementById('message-button');
+    const messageList = document.getElementById('message-list');
+
     messageButton.disabled = true;
 
     messageInput.addEventListener('input', function(e) {
@@ -42,7 +44,14 @@ window.addEventListener('DOMContentLoaded', event => {
     
         // Get the value from the message input field
         var message = messageInput.value;
-    
+
+        // Populate message list with new message
+        var card = document.createElement("div");
+        card.classList.add("alert");
+        card.classList.add("alert-primary");
+        card.innerHTML=message;
+
+        messageList.appendChild(card);
     
         // Clear the message input field
         messageInput.value = '';

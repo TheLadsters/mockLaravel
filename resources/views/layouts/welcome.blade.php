@@ -23,7 +23,7 @@
                 <div class="container-fluid">
                     <div class="fixed-bottom mx-5 mb-3">
                         <form>
-                            <div class="messages--div">
+                            <div id="message-list" class="messages--div">
                             </div>
 
                             <div class="mb-3">
