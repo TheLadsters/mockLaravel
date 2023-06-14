@@ -47,10 +47,15 @@ window.addEventListener('DOMContentLoaded', event => {
 
         // Populate message list with new message
         var card = document.createElement("div");
-        card.classList.add("alert");
-        card.classList.add("alert-primary");
-        card.innerHTML=message;
+        let col = document.createElement('div');
+        card.classList.add("row");
+        card.classList.add("mx-0");
+        col.classList.add("alert");
+        col.classList.add("alert-primary");
+        col.classList.add("col-6");
+        col.innerHTML=message;
 
+        card.appendChild(col);
         messageList.appendChild(card);
     
         // Clear the message input field

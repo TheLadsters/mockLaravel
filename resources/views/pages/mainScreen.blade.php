@@ -11,12 +11,11 @@
         <div class="container-fluid">
             <div class="fixed-bottom mx-5 mb-3">
                 <form>  
-                    <div class="messages--div row">
-                        <div class="col-6" id="reply-list">
-                        </div>
-
-                        <div class="col-6" id="message-list">
-
+                    <div class="messages--div container" id="message-list">
+                        <div class="row mx-0">
+                            <div class="col-6 alert alert-primary offset-6">
+                            This is a reply
+                            </div>
                         </div>
                     </div>
 
