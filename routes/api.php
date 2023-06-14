@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\MessageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+/*
+--------------------------------------------------------------------------
+ Message DB CRUD Routes
+--------------------------------------------------------------------------
+*/
+Route::get('/messages', [MessageController::class, 'getMessages']); 
+Route::post('/message', [MessageController::class, 'storeMessage']); 
+Route::put('/message', [MessageController::class, 'updateMessage']); 
