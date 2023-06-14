@@ -6,7 +6,11 @@
                 <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                     <!-- <li class="nav-item active"><a class="nav-link" href="#!"><i class='bx bx-video bx-sm'></i></a></li> -->
                     <!-- <li class="nav-item"><a class="nav-link" href="#!"><i class='bx bxs-phone-call bx-sm' ></i></a></li> -->
-                    <li class="nav-item"><a class="nav-link" href="#!"><i class='bx bx-info-circle bx-sm'></i></a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <i class='bx bx-info-circle bx-sm'></i>
+                        </a>
+                    </li>
                 </ul>
             <!-- </div> -->
         </div>
