@@ -45,13 +45,20 @@ window.addEventListener("DOMContentLoaded", (event) => {
     */
     const setMessageList = (allMessages) => {
         allMessages.forEach((message) => {
+            let row = document.createElement("div");
             let card = document.createElement("div");
+            row.classList.add("row");
+            row.classList.add("mx-0");
+
             card.classList.add("alert");
             card.classList.add("alert-primary");
+            card.classList.add("col-6");
             card.id = message.id;
             card.innerHTML = message.message;
 
-            if (messageList) messageList.appendChild(card);
+            row.appendChild(card);
+
+            if (messageList) messageList.appendChild(row);
         });
     };
 
@@ -69,22 +76,29 @@ window.addEventListener("DOMContentLoaded", (event) => {
     if (messageButton)
         messageButton.addEventListener("click", function (e) {
             e.preventDefault();
-            // Get the value from the message input field
-            let message = messageInput.value;
+
+            var message = messageInput.value;
 
             // Populate message list with new message
-            let card = document.createElement("div");
+            let row = document.createElement("div");
+            var card = document.createElement("div");
+            row.classList.add("row");
+            row.classList.add("mx-0");
             card.classList.add("alert");
             card.classList.add("alert-primary");
-            card.innerHTML = message;
+            card.classList.add("col-6");
+            card.classList.add("offset-6");
+            card.innerHTML=message;
 
-            messageList.appendChild(card);
-            scrollToBottom(messageList);
-            //storeMessageToDB()
-
+            row.appendChild(card);
+            messageList.appendChild(row);
+        
             // Clear the message input field
-            messageInput.value = "";
+            messageInput.value = '';
             messageButton.disabled = true;
+
+            scrollToBottom(messageList);
+            // storeMessageToDB()
         });
 
     if (sidebarToggle) {
@@ -122,29 +136,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
     });
 
 
-    messageButton.addEventListener('click', function(e) {
-        e.preventDefault();
-    
-        // Get the value from the message input field
-        var message = messageInput.value;
-
-        // Populate message list with new message
-        var card = document.createElement("div");
-        let col = document.createElement('div');
-        card.classList.add("row");
-        card.classList.add("mx-0");
-        col.classList.add("alert");
-        col.classList.add("alert-primary");
-        col.classList.add("col-6");
-        col.innerHTML=message;
-
-        card.appendChild(col);
-        messageList.appendChild(card);
-    
-        // Clear the message input field
-        messageInput.value = '';
-        messageButton.disabled = true;
-      });
     /*
     -----------------------------------------------------------
     ON PAGE LOAD FUNCTION CALLS
