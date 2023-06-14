@@ -1,33 +1,116 @@
-/*!
-* Start Bootstrap - Simple Sidebar v6.0.6 (https://startbootstrap.com/template/simple-sidebar)
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-simple-sidebar/blob/master/LICENSE)
-*/
-// 
-// Scripts
-// 
+window.addEventListener("DOMContentLoaded", (event) => {
+    const messageInput = document.getElementById("message-input");
+    const messageButton = document.getElementById("message-button");
+    const messageList = document.getElementById("message-list");
+    messageButton.disabled = true;
+    const sidebarToggle = document.body.querySelector("#sidebarToggle");
 
-window.addEventListener('DOMContentLoaded', event => {
+    /*
+    -----------------------------------------------------------
+    ASYNC DB CRUD FUNCTIONS
+    -----------------------------------------------------------
+    */
+    const getAllMessages = async () => {
+        try {
+            const response = await $.ajax({
+                url: "api/messages", // Replace with the appropriate route to your Laravel controller method
+                type: "GET",
+                dataType: "json",
+            });
+            setMessageList(response);
+        } catch (error) {
+            console.log(error.responseText); // Handle any errors here
+        }
+    };
 
-    // Toggle the side navigation
-    const sidebarToggle = document.body.querySelector('#sidebarToggle');
+    const storeMessageToDB = async (newMessage) => {
+        try {
+            const response = await $.ajax({
+                url: "api/messages", // Replace with the appropriate route to your Laravel controller method
+                type: "POST",
+                dataType: "json",
+                data: {
+                    conversation_id: val,
+                },
+            });
+        } catch (error) {
+            console.log(error.responseText); // Handle any errors here
+        }
+    };
+
+    /*
+    -----------------------------------------------------------
+    SUPPLEMENTARY CRUD FUNCTIONS
+    -----------------------------------------------------------
+    */
+    const setMessageList = (allMessages) => {
+        allMessages.forEach((message) => {
+            let card = document.createElement("div");
+            card.classList.add("alert");
+            card.classList.add("alert-primary");
+            card.id = message.id;
+            card.innerHTML = message.message;
+
+            if (messageList) messageList.appendChild(card);
+        });
+    };
+
+    /*
+    -----------------------------------------------------------
+    EVENT LISTENERS
+    -----------------------------------------------------------
+    */
+    if (messageInput)
+        messageInput.addEventListener("input", function (e) {
+            if (messageInput.value === "") messageButton.disabled = true;
+            else messageButton.disabled = false;
+        });
+
+    if (messageButton)
+        messageButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            // Get the value from the message input field
+            let message = messageInput.value;
+
+            // Populate message list with new message
+            let card = document.createElement("div");
+            card.classList.add("alert");
+            card.classList.add("alert-primary");
+            card.innerHTML = message;
+
+            messageList.appendChild(card);
+            scrollToBottom(messageList);
+            //storeMessageToDB()
+
+            // Clear the message input field
+            messageInput.value = "";
+            messageButton.disabled = true;
+        });
+
     if (sidebarToggle) {
         // Uncomment Below to persist sidebar toggle between refreshes
-        if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
-            document.body.classList.toggle('sb-sidenav-toggled');
-        }
-        sidebarToggle.addEventListener('click', event => {
-            event.preventDefault();
-            document.body.classList.toggle('sb-sidenav-toggled');
-            localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+        if (localStorage.getItem("sb|sidebar-toggle") === "true")
+            document.body.classList.toggle("sb-sidenav-toggled");
+
+        sidebarToggle.addEventListener("click", (e) => {
+            e.preventDefault();
+            document.body.classList.toggle("sb-sidenav-toggled");
+            localStorage.setItem(
+                "sb|sidebar-toggle",
+                document.body.classList.contains("sb-sidenav-toggled")
+            );
         });
     }
 
-    const messageInput = document.getElementById('message-input');
-    const messageButton = document.getElementById('message-button');
-    const messageList = document.getElementById('message-list');
-
-    messageButton.disabled = true;
+    /*
+    -----------------------------------------------------------
+    MISCELLANEOUS FUNCTIONS
+    -----------------------------------------------------------
+    */
+    // Function to scroll to the bottom of the container
+    const scrollToBottom = (container) => {
+        container.scrollTop = container.scrollHeight;
+    };
 
     messageInput.addEventListener('input', function(e) {
         if(messageInput.value === ''){
@@ -62,4 +145,10 @@ window.addEventListener('DOMContentLoaded', event => {
         messageInput.value = '';
         messageButton.disabled = true;
       });
+    /*
+    -----------------------------------------------------------
+    ON PAGE LOAD FUNCTION CALLS
+    -----------------------------------------------------------
+    */
+    getAllMessages();
 });
